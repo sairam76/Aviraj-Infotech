@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aviraj Infotech</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .chatbox {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      max-height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: none; /* Initially hidden */
+      background-color: white;
+      z-index: 1000; /* Make sure it's above other content */
+      overflow: hidden;
+      transition: transform 0.3s ease; /* Smooth slide-in effect */
+      transform: translateY(100%);
+    }
+    .chatbox.open {
+      transform: translateY(0); /* Slide in */
+    }
+    .chatbox-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+      cursor: pointer; /* Make the header clickable */
+    }
+    .chatbox-body {
+      max-height: calc(100% - 80px); /* Adjust based on header/footer height */
+      overflow-y: auto;
+      padding: 10px;
+    }
+    .chatbox-footer {
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+    .messages {
+      margin-bottom: 10px;
+    }
+    .user-message {
+      background-color: #e1ffc7;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px 0;
+    }
+    .ai-message {
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px 0;
+    }
+    .toggle-chatbox-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      z-index: 1000; /* Make sure it's above other content */
+    }
+    @media (max-width: 576px) {
+      .chatbox {
+        width: 100%;
+        height: 80%;
+        max-height: none; /* Remove max-height on smaller screens */
+      }
+    }
+  </style>
+
+        <!-- Css section starts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/slicknav.css">
+        <link rel="stylesheet" href="assets/css/flaticon.css">
+        <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+        <link rel="stylesheet" href="assets/css/gijgo.css">
+        <link rel="stylesheet" href="assets/css/animate.min.css">
+        <link rel="stylesheet" href="assets/css/animated-headline.css">
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="assets/css/themify-icons.css">
+        <link rel="stylesheet" href="assets/css/slick.css">
+        <link rel="stylesheet" href="assets/css/nice-select.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style1.css">
+        <!-- Css Files Ends -->
+    </head>
+
+    <body>
+        
+        <!-- Header section starts -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <header>
+            <div class="header-area header-transparent">
+                <div class="main-header ">
+                    <div class="header-bottom  header-sticky">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <!-- Logo -->
+                                <div class="col-xl-2 col-lg-2">
+                                    <div class="logo">
+                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-10 col-lg-10">
+                                    <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                        <!-- Main-menu -->
+                                        <div class="main-menu d-none d-lg-block">
+                                            <nav>
+                                                <ul id="navigation">                                                                                          
+                                                    <li class="active" ><a href="index.html">Home</a></li>
+                                                    <li><a href="about.html">About</a></li>
+                                                    <li><a href="courses.html">Courses</a>
+                                                        <ul class="submenu">
+                                                            <li><a href="courses.html#course1">Web Programming</a></li>
+                                                            <li><a href="courses.html#course2">App Development</a></li>
+                                                            <li><a href="courses.html#course3">A.I. and M.L.</a></li>
+                                                            <li><a href="courses.html#course4">Cyber Security</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">IT-Services</a>
+                                                        <ul class="submenu">
+                                                            <li><a href="DronesRobotics.html">Drones & Robotics</a></li>
+                                                            <li><a href="CyberAnalysis.html">Cyber Analysis</a></li>
+                                                            <li><a href="AppDev.html">Application Development</a></li>
+                                                            <li><a href="ArtificialLearning.html">A.I Integration</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="contact.html">Contact</a></li>
+                                                    <!-- Button -->
+                                                    <!-- <li class="button-header margin-left "><a href="#" class="btn">Join</a></li>
+                                                    <li class="button-header"><a href="login.html" class="btn btn3">Log in</a></li> -->
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- Mobile Menu -->
+                                <div class="col-12">
+                                    <div class="mobile_menu d-block d-lg-none"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header section ends -->
+        <!-- Main section starts -->
+        <main>
+        
+            <!-- Slider area starts-->
+            <section class="slider-area ">
+                <div class="slider-active">
+                    <!-- Single Slider -->
+                    <div class="single-slider slider-height d-flex align-items-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-7 col-md-12">
+                                    <div class="hero__caption">
+                                        <h1 data-animation="fadeInLeft" data-delay="0.2s">Online learning<br> platform</h1>
+                                        <p data-animation="fadeInLeft" data-delay="0.4s">Build skills with courses,
+                                            certificates, and degrees online from world-class universities and companies</p>
+                                        <a href="contact.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">Join us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Slider area ends -->
+        
+            <!-- IT-Services start -->
+            <div class="courses-area section-padding40 fix">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7 col-lg-8">
+                            <div class="section-tittle text-center mb-55">
+                                <h2>Our Featured IT-Services</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card">
+                            <img src="assets/img/gallery/cyberhello.jpg" alt="" class="card image-top">
+                            <div class="card-body">
+                              <h5 class="card-titel text-center" style="font-weight:bold; font-size:larger;">Cyber Analysis</h5>
+                              <p class="text-center">Cyber analysis involves examining digital data to identify and mitigate security threats, and to ensure the integrity, confidentiality, and availability of information systems.</p>
+                              <div class="text-center">
+                                <a href="CyberAnalysis.html">
+                                    <button class="btn btn-primary px-5 py-3 mt-3 fs-5 fw-medium bg-primaryy" style="bottom: 1vh;" type="button">
+                                        Explore now
+                                    </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card">
+                            <img src="assets/img/gallery/yoyo.jpg" alt="" class="card image-top">
+                            <div class="card-body">
+                              <h5 class="card-titel text-center" style="font-weight:bold; font-size:larger;">A.I Integration</h5>
+                              <p class="text-center">AI integration embeds intelligent technologies into systems to automate tasks and enhance decision-making. This improves efficiency and capability across various applications.
+                              </p>
+                              <div class="text-center">
+                                <a href="ArtificialLearning.html">
+                                    <button class="btn btn-primary px-5 py-3 mt-3 fs-5 fw-medium bg-primaryy" style="bottom: 1vh;" type="button">
+                                        Explore now
+                                    </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                  
+                        <div class="col-lg-3 col-sm-6 py-3  py-md-0">
+                          <div class="card">
+                            <img src="assets/img/gallery/roboticshello.jpg" alt="" class="card image-top">
+                            <div class="card-body">
+                              <h5 class="card-titel text-center" style="font-weight:bold; font-size:larger;">Drones & Robotics</h5>
+                              <p class="text-center">Drones and robotics automate tasks through advanced technology, enhancing efficiency, precision, versatility, safety, sustainability, and productivity in various industries.</p>
+                              <div class="text-center">
+                                <a href="DronesRobotics.html">
+                                    <button class="btn btn-primary px-5 py-3 mt-3 fs-5 fw-medium bg-primaryy" style="bottom: 1vh; display: absolute;" type="button">
+                                        Explore now
+                                      </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card">
+                            <img src="assets/img/gallery/appapp.jpg" alt="" class="card image-top">
+                            <div class="card-body">
+                              <h5 class="card-titel text-center" style="font-weight:bold; font-size:larger;">Application Development</h5>
+                              <p class="text-center">
+                                Application development involves designing and coding software to meet user needs, ensuring functionality and usability through rigorous testing and maintenance.
+                              </p>
+                              <div class="text-center">
+                                <a href="AppDev.html">
+                                    <button class="btn btn-primary px-5 py-3 mt-3 fs-5 fw-medium bg-primaryy" style="bottom: 1vh; display: absolute;" type="button">
+                                        Explore now
+                                      </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <!-- IT-Services End -->
+        
+            <!-- Courses area start -->
+            <div class="courses-area section-padding40 fix">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7 col-lg-8">
+                            <div class="section-tittle text-center mb-55">
+                                <h2>Our Courses</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card" id="tpc">
+                            <img src="assets/img/gallery/web.jpg" alt="" class="card image-top">
+                            <div class="card-img-overlay">
+                              <h4 class="card-titel" style="color: white; text-shadow: 0px 0px 2px black; font-size:larger;">Web Programming</h4>
+                              <p class="card-text" style="color: white; text-shadow: 0px 0px 2px black;">Involves designing and coding.</p>
+                              <div class="text-center">
+                                <a href="courses.html#course1">
+                                    <button class="btn btn-primary px-3 py-3 fs-9 fw-medium bg-primaryy" type="button">
+                                        Explore now
+                                      </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card" id="tpc">
+                            <img src="assets/img/gallery/hello.jpg" alt="" class="card image-top">
+                            <div class="card-img-overlay">
+                              <h4 class="card-titel" style="color: white; text-shadow: 0px 0px 2px black; font-size:larger;">App Development</h4>
+                              <p class="card-text" style="color: white; text-shadow: 0px 0px 2px black;"> Involves coding and creatively.</p>
+                              <div class="text-center">
+                                <a href="courses.html#course2">
+                                    <button class="btn btn-primary px-3 py-3 fs-9 fw-medium bg-primaryy" type="button">
+                                        Explore now
+                                      </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card" id="tpc">
+                            <img src="assets/img/gallery/yoyo.jpg" alt="" class="card image-top">
+                            <div class="card-img-overlay">
+                              <h4 class="card-titel" style="color: white; text-shadow: 0px 0px 2px black; font-size:larger;">AI & ML</h4>
+                              <p class="card-text" style="color: white; text-shadow: 0px 0px 2px black;">Entail intelligent analysis.</p>
+                              <div class="text-center">
+                                <a href="courses.html#course3">
+                                    <button class="btn btn-primary px-3 py-3 fs-9 fw-medium bg-primaryy" type="button">
+                                        Explore now
+                                      </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 py-3 py-md-0">
+                          <div class="card" id="tpc">
+                            <img src="assets/img/gallery/yoooyooo.jpg" alt="" class="card image-top">
+                            <div class="card-img-overlay">
+                              <h4 class="card-titel" style="color: white; text-shadow: 0px 0px 2px black; font-size:larger;">Cyber Security</h4>
+                              <p class="card-text" style="color: white; text-shadow: 0px 0px 2px black;"> Safeguards digital assets.</p>
+                              <div class="text-center">
+                                <a href="courses.html#course4">
+                                    <button class="btn btn-primary px-3 py-3 fs-9 fw-medium bg-primaryy" type="button">
+                                        Explore now
+                                    </button>
+                                </a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+            <!-- Courses area End -->
+        
+            <!-- Our partner -->
+        
+            <div class="container-xl pb-4 " style="margin-top: 40px;">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="lc-block mb-4">
+        
+                            <div class="section-tittle text-center mb-55">
+                                <h2>Our Partners</h2>
+                            </div>
+        
+                            <p editable="inline"> Our partners are vital to our success. We prioritize their needs and value our strong, collaborative relationships with them, ensuring mutual growth.
+                            </p>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                </div>
+                <div class="row justify-content-between" style="padding-top: 50px;">
+                    <div class="col-md-3 col-6">
+                        <div class="lc-block">
+                            <div class="text-center">
+                                <img src="assets/img/partner/elara capital.png" alt="">
+                                <h4 class="mb-0 mt-2" editable="inline">Elara Capital</h4>
+                            </div>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                    <div class="col-md-3 col-6">
+                        <div class="lc-block">
+                            <div class="text-center">
+                                <img src="assets/img/partner/aviz.png" alt="" style="background-color: black;" height="70"
+                                    width="200">
+                                <h4 class="mb-0 mt-2" editable="inline">Aviz Networks</h4>
+        
+                            </div>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                    <div class="col-md-3 col-6">
+                        <div class="lc-block">
+                            <div class="text-center">
+                                <img src="assets/img/partner/nr-consulting.jpg" alt="" height="70" width="200">
+                                <h4 class="mb-0 mt-2" editable="inline">nr-consulting</h4>
+                            </div>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                </div>
+            </div>
+        
+        
+            <!-- our client -->
+            <!--====== CLIENT LOGO PART START ======-->
+            <section class="client-logo-area client-logo-one">
+                <!--======  Start Section Title Two ======-->
+                <div class="section-title-two">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="content">
+                                    <div class="section-tittle text-center mb-55">
+                                        <h2>Our AWESOME CLIENTS</h2>
+                                    </div>
+                                    <p editable="inline">
+                                        As a valued partner, your collaboration and dedication drive our success and innovation.
+                                        Together, we build a brighter future. Your trust is our key to success
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- container -->
+                </div>
+                <!--====== End Section Title Two ======-->
+                <div class="container-xl">
+                    <div class="row">
+                        <div class="col-md-3 col-6">
+                            <div class="single-client text-center">
+                                <img src="https://cdn.ayroui.com/1.0/images/client-logo/graygrids.svg" alt="Logo" />
+                            </div>
+                            <!-- single client -->
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="single-client text-center">
+                                <img src="https://cdn.ayroui.com/1.0/images/client-logo/uideck.svg" alt="Logo" />
+                            </div>
+                            <!-- single client -->
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="single-client text-center">
+                                <img src="https://cdn.ayroui.com/1.0/images/client-logo/ayroui.svg" alt="Logo" />
+                            </div>
+                            <!-- single client -->
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="single-client text-center">
+                                <img src="https://cdn.ayroui.com/1.0/images/client-logo/lineicons.svg" alt="Logo" />
+                            </div>
+                            <!-- single client -->
+                        </div>
+                    </div>
+                    <!-- row -->
+                </div>
+                <!-- container -->
+        
+                <!-- Testnomials start -->
+                <div class="courses-area section-padding40 fix">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-7 col-lg-8">
+                                <div class="section-tittle text-center mb-55">
+                                    <h2>WHAT CLIENTS SAY</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="courses-actives">
+                            <!-- Robotics Solutions starts -->
+                            <div class="properties pb-20" style="background-color: #051445;">
+                                <div class="properties__card">
+                                    <!-- <div class="properties__img overlay1">
+                                        <a href="#"><img src="assets/img/partner/mstc.png" alt=""></a>
+                                    </div> -->
+                                    <div class="properties__caption">
+                                        <h3><a href="#">M.C.S.T.M College</a></h3>
+                                        <p style="color: white;">Aviraj Infotech has transformed our business operations with their cutting-edge software solutions. Their team's expertise and dedication are unmatched, ensuring our projects are always delivered on time and beyond expectations.
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <!-- Robotics Solutions ends -->
+                            <!-- Cyber Analysis starts -->
+                            <div class="properties pb-20" style="background-color: #051445;">
+                                <div class="properties__card">
+                                    <div class="properties__img overlay1">
+                                        <a href="#"><img src="" alt=""></a>
+                                    </div>
+                                    <div class="properties__caption">
+                                        <h3><a href="#">Aaranya Resort</a></h3>
+                                        <p style="color: white;">Working with Aviraj Infotech has been a game-changer. Their innovative approach and seamless integration of technology have significantly improved our efficiency and productivity. We highly recommend them.
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <!-- Cyber Analysis ends -->
+                            <!-- A.I Integration starts -->
+                            <div class="properties pb-20" style="background-color: #051445;">
+                                <div class="properties__card">
+                                    <div class="properties__img overlay1">
+                                        <a href="#"><img src="" alt=""></a>
+                                    </div>
+                                    <div class="properties__caption">
+                                        <h3><a href="#">Hotel Pushpanjali</a></h3>
+                                        <p style="color: white;">The team at Aviraj Infotech truly understands our needs and delivers tailored solutions that drive our business forward. Their proactive support and deep technical knowledge make them an invaluable partner.
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <!-- A.I Integration ends -->
+                            <!-- Application Development starts -->
+                            <div class="properties pb-20" style="background-color: #051445;">
+                                <div class="properties__card">
+                                    <div class="properties__img overlay1">
+                                        <a href="#"><img src="" alt=""></a>
+                                    </div>
+                                    <div class="properties__caption">
+                                        <h3><a href="#">ManishAstro</a></h3>
+                                        <p style="color: white;">Choosing Aviraj Infotech was undoubtedly one of the best decisions we made. Their professionalism, attention to detail, and innovative solutions have been instrumental in our company's growth and success.
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <!-- Application Development ends -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Testnomials End -->
+        </main>
+        <!-- Main section ends -->
+
+
+        <!-- Footer starts -->
+            <!-- <div class="container container">
+                <div class="footer-content">
+                    <h3 class="h3">Contact Us</h3>
+                    <p>Email: avirajinfotechplc@gmail.com</p>
+                    <p>Phone:+91 9389477179</p>
+                    <p>Address:Jayanand Garkoti, Takana Road, Pithoragarh</p>
+                </div>
+                <div class="footer-content">
+                    <h3 class="h3">Quick Links</h3>
+                    <ul class="list">
+                        <li><a href="" class="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about.html" class="aa">About</a></li>
+                        <li><a href="IT-Services.html">IT-Services</a></li>
+                        <li><a href="contact.html" class="aa">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-content">
+                    <h3 class="h3">Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="" class="aa"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="" class="aa"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/103019878/admin/feed/posts/" class="aa"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <div class="bottom-bar">
+                <p style="color: white;">&copy; 2024 Aviraj Infotech pvt. ltd. All rights reserved</p>
+            </div>
+        </footer>
+        <!-- Footer ends -->
+<!-- Chatbot Container -->
+  <div class="chatbox">
+  <div class="chatbox-header">
+    Chatbot
+  </div>
+  <div class="chatbox-body" id="chatbox-body">
+    <div class="messages" id="messages"></div>
+  </div>
+  <div class="chatbox-footer">
+    <input type="text" id="user-input" class="form-control" placeholder="Type your message..." />
+    <button id="send-btn" class="btn btn-primary   
+ mt-2">Send</button>
+  </div>
+</div>
+
+  <!-- Toggle Button -->
+  <button class="toggle-chatbox-btn" id="toggle-chatbox-btn">
+    💬
+  </button>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    document.getElementById('toggle-chatbox-btn').addEventListener('click', function() {
+      const chatbox = document.querySelector('.chatbox');
+      chatbox.classList.toggle('open');
+      chatbox.style.display = chatbox.classList.contains('open') ? 'block' : 'none';
+    });
+
+    document.getElementById('send-btn').addEventListener('click', async function() {
+  const userInput = document.getElementById('user-input').value;
+  if (userInput.trim() === '') return;
+
+  // Display user message
+  const userMessageDiv = document.createElement('div');
+  userMessageDiv.textContent = 'You: ' + userInput;
+  userMessageDiv.classList.add('user-message');
+  document.querySelector('.messages').appendChild(userMessageDiv);
+
+  // Clear user input
+  document.getElementById('user-input').value = '';
+
+  try {
+    // Use a mock response for testing
+    const mockResponse = {
+      choices: [{ text: 'This is a mock response from the AI service.' }]
+    };
+
+    // Display AI response
+    const aiMessageDiv = document.createElement('div');
+    aiMessageDiv.textContent = 'AI: ' + mockResponse.choices[0].text.trim();
+    aiMessageDiv.classList.add('ai-message');
+    document.querySelector('.messages').appendChild(aiMessageDiv);
+
+  } catch (error) {
+    // Handle and log errors
+    console.error('Error:', error);
+    const errorMessageDiv = document.createElement('div');
+    errorMessageDiv.textContent = 'AI: Sorry, something went wrong.';
+    errorMessageDiv.classList.add('ai-message');
+    document.querySelector('.messages').appendChild(errorMessageDiv);
+  }
+
+  // Scroll to the bottom of the chatbox
+  const chatboxBody = document.querySelector('.chatbox-body');
+  chatboxBody.scrollTop = chatboxBody.scrollHeight;
+});
+
+
+  </script>
+
+        <!-- Javascript section starts -->
+        <!-- JS here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+        
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+        
+        <!-- Date Picker -->
+        <script src="./assets/js/gijgo.min.js"></script>
+        <!-- Nice-select, sticky -->
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
+        <!-- Progress -->
+        <script src="./assets/js/jquery.barfiller.js"></script>
+        
+        <!-- counter , waypoint,Hover Direction -->
+        <script src="./assets/js/jquery.counterup.min.js"></script>
+        <script src="./assets/js/waypoints.min.js"></script>
+        <script src="./assets/js/jquery.countdown.min.js"></script>
+        <script src="./assets/js/hover-direction-snake.min.js"></script>
+        
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        <!-- Jquery Plugins, main Jquery -->
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+        <!-- Javascript section ends -->
+
+    </body>
+
+</html>

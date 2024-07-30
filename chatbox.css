@@ -1,0 +1,25 @@
+<style>
+.chatbox {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.chatbox-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+.chatbox-body {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+}
+.chatbox-footer {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+.messages {
+  margin-bottom: 10px;
+}
+</style>
